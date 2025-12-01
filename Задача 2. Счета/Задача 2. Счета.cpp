@@ -8,17 +8,18 @@ struct BankPerson
     std::string first_name;
     int AccountNumber;
     double AmountMoneyInAccount;
-    double NewBalance;
-    void ChangeBalance(BankPerson& person) // ссылка
+};
+
+static double ChangeBalance(BankPerson& person, double NewBalance) // функция
     {
-        AmountMoneyInAccount = NewBalance;
+        person.AmountMoneyInAccount = NewBalance;
+        return person.AmountMoneyInAccount;
     }
 
-};
 
 int main(int argc, char** argv)
 {
-   // double NewBalance{ 0 };
+    double NewBalance;
     BankPerson person;
     std::cout << "Enter the account number:";
     std::cin >> person.AccountNumber;
@@ -27,8 +28,8 @@ int main(int argc, char** argv)
     std::cout << "Enter the balance:";
     std::cin >> person.AmountMoneyInAccount;
     std::cout << "Enter a new balance:";
-    std::cin >> person.NewBalance;
-    person.ChangeBalance(person);
+    std::cin >> NewBalance;
+    ChangeBalance(person, NewBalance);
     
     std::cout << "Your account:" << person.first_name << ", " << person.AccountNumber << ", " << person.AmountMoneyInAccount;
 
